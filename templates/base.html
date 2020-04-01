@@ -7,13 +7,20 @@
 
     <body>
         <header>
-            <div class="nav-left">
+            <div class="">
                 <h1><a href="{% url 'home' %}">Charles M.</a></h1>
             </div>
-            <div class="nav-right">
+            <div class="">
                 <a href="{% url 'post_new' %}">New Post</a>
             </div>
         </header>
+        {% if user.is_authenticated %}
+        <p>Hi {{ user.username }}!</p>
+        <p><a href="{% url 'logout' %}">Log Out</a></p>
+        {% else %}
+        <p>You are not logged in.</p>
+        <a href="{% url 'login' %}">Log In</a>
+        {% endif %}
         <div>
             {% block content %}
             {% endblock content %}
